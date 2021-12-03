@@ -5,7 +5,6 @@
  * 
  * @author  Rodrigo Mady
  * @project NodeJS Bootcamp
- * 
  */
 
 // You should create a variable to hold your name, and one to hold your mentor’s name.

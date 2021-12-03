@@ -5,7 +5,6 @@
  * 
  * @author  Rodrigo Mady
  * @project NodeJS Bootcamp
- * 
  */
 
 // Create 5 variables of different types.
