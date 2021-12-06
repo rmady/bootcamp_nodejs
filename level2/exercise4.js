@@ -13,7 +13,7 @@
     age:       26,
 };
 // Create a function that receives a parameter and prints to console the type of that parameter.  
-const checkParamType = (param) => console.log(typeof(param));
+let checkParamType = (param) => console.log(typeof(param));
 
 checkParamType(person.firstname);
 checkParamType(person.age);

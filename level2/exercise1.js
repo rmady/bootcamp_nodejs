@@ -15,5 +15,5 @@ let person = {
 };
 
 // create a function called greeting that will print to console Hello, firstName using template literals.
-const greeting = (person) => console.log(`Hello, ${person.firstname}`);
+let greeting = (person) => console.log(`Hello, ${person.firstname}`);
 greeting(person);

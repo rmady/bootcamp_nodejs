@@ -14,7 +14,7 @@
 };
 // Create a function that prints to the console “first age”, “second age” or 
 // “third age” based on the object’s age property passed as parameter.  
-const whichAge = (person) => {
+let whichAge = (person) => {
     let age = '';
 
     // First age is less or equal 30.

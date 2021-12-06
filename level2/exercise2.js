@@ -15,9 +15,9 @@ let person = {
 };
 
 // Create a function to increment age.
-const incrementAge = (person, increment) => person.age + increment;
+let incrementAge = (person, increment) => person.age + increment;
 console.log(`Incrementation: ${incrementAge(person, 5)}`);
 
 // Another to decrement age, both receiving the amount as parameter.
-const decrementAge = (person, decrement) => person.age - decrement;
-console.log(`Decrementation: ${decrementAge(person, 5)}`);
+let decrementAge = (person, decrement) => person.age - decrement;
+console.log(`Decrementation: ${decrementAge(person, 15)}`);
