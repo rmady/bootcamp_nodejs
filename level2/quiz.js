@@ -97,21 +97,12 @@ people = people.map(elem => `${elem.firstname} ${elem.lastname}`);
 // sort them in a way that evens come before them odds, and them sort them from lowest to highest.
 let numbers = [30, 5, 5, 18, 43, 16, 21, 16, 24, 4, 38, 3, 18, 19, 18, 42, 6, 35, 38, 43];
 numbers.sort((a, b) => a - b);
+console.log(numbers);
 numbers.sort((a, b) => {
     if(a % 2 == 0 && b % 2 != 0) {
         return -1;
     } else if(a % 2 != 0 && b % 2 == 0) {
         return 1
-    } else {
-        return 0;
-    }
-});
-console.log(numbers);
-numbers.sort((a, b) => {
-    if (a % 2 == 0 && b % 2 == 0) {
-        return 1;
-    } else if(a % 2 != 0 && b % 2 != 0) {
-        return 1;
     } else {
         return 0;
     }
