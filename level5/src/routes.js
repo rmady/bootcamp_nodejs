@@ -9,18 +9,27 @@
 const express         = require('express');
 const UsersController = require('./controllers/UsersController');
 
-const router  = express.Router();
-const user    = new UsersController();
+const router = express.Router();
+const user   = new UsersController();
   
-router.get('/', function (req, res) {
-    res.send('Hello World')
+var users =[{
+  id: 1,
+  name: "Rodrigo Mady",
+  age : 23
+}];
+
+router.get('/', (req, res) => {
+    res.send('Hello user')
 })
-router.get('/users', function(req, res) {
-    const user_name = req.query.name;
-    res.send({
-      'user_name': user_name
-    });
+
+router.get('/users', (req, res) => {
+    return res.json(users);
 });
-router.post('/users', user.create);
+
+router.post('/users', (req, res) => {
+    let user = req.body.user;
+    users.push(user);
+    return res.send(`User ${user.name} has been added successfully!`);
+});
 
 module.exports = router;
