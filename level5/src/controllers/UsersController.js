@@ -5,8 +5,13 @@ class UsersController {
 
     }
 
-    create(request, response) {
-        return 'Name';
+    search(name, users) {
+        if (name) {
+            let result  = [];
+            let regexp  = new RegExp(`${name}\\b`, 'gi');
+            return users.filter(({name}) => name.match(regexp));
+        } 
+        return false;
     }
 }
 

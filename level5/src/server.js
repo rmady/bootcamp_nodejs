@@ -13,11 +13,13 @@ const bodyParser = require("body-parser");
 const app  = express();
 const port = 3000;
 
-//Here we are configuring express to use body-parser as middle-ware.
+// Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// routes will go here
+// Routes will go here.
 app.use(routes);
+
+// Start server.
 app.listen(port);
 console.log('Server started at http://localhost:' + port);

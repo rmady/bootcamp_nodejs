@@ -4,26 +4,25 @@
  * 
  * @author  Rodrigo Mady
  * @project NodeJS Bootcamp
- */
+ */ 
 
 const express         = require('express');
 const UsersController = require('./controllers/UsersController');
+const User            = require('./entities/User');
 
-const router = express.Router();
-const user   = new UsersController();
-  
-var users =[{
-  id: 1,
-  name: "Rodrigo Mady",
-  age : 23
-}];
+const router       = express.Router();
+let user           = new User();
+let userController = new UsersController();
+let users          = user.listUsers();
 
 router.get('/', (req, res) => {
     res.send('Hello user')
-})
+});
 
 router.get('/users', (req, res) => {
-    return res.json(users);
+    let name    = req.query.name;
+    let matches = userController.search(name, users);
+    return matches.length ? res.json(matches) : res.json(users);
 });
 
 router.post('/users', (req, res) => {
