@@ -1,53 +1,38 @@
 /**
  * BairesDev NodeJS Bootcamp level 6.
- * Using sequelize create a model named Product, it should contain at least two properties.
+ * Level 8 - Final Project.
  * 
  * @author  Rodrigo Mady
  * @project NodeJS Bootcamp
- */ 
+ */
 
 const Product   = require("../entities/product.model");
-const { Op }    = require("sequelize");
+const { Op }    = require("sequelize")
 
-/**
- * Class Product Controller.
- */
 class ProductController {
-    /**
-     * List products with a simple like filter.
-     * 
-     * @param {*} req 
-     * @param {*} res 
-     */
     async list(req, res) {
         const { name } = req.body;
+        let products = [];
         try {
-            let products;
             if (name) {
-                products = await Product.findAll({ 
+                products = await Product.findAll({
                     where: {
                         name: {[Op.like]: `%${name}%`}
-                    } 
+                    }
                 });
                 if (products.length === 0) {
-                    res.send( {success: false, products: `Database don't have any product with name like '${name}'`} );
+                    res.send(`Sorry, we don't have any products with name like '${name}'`);
                 }
             } else {
-                products = await Product.findAll() 
+                products = await Product.findAll();
             }
-            res.send( {success: true, products: products} );
+            res.send(products);
         } catch (e) {
             console.log(e);
             res.status(500).send(e.message);
         }
     }
 
-    /**
-     * Get product by id.
-     * 
-     * @param {*} req 
-     * @param {*} res 
-     */
     async get(req, res) {
         const { id } = req.params;
         try {
@@ -55,7 +40,7 @@ class ProductController {
             if (product) {
                 res.send(product);
             } else {
-                res.send(`Product with id ${id} not exist in database`);
+                res.send(`Sorry, we don't have any product with id '${id}'`);
             }
         } catch (e) {
             console.log(e);
@@ -63,16 +48,12 @@ class ProductController {
         }
     }
 
-    /**
-     * Create product in database.
-     * 
-     * @param {*} req 
-     * @param {*} res 
-     */
     async create(req, res) {
-        const { name, description, price, color } = req.body;
+        const { name, price, color } = req.body;
         try {
-            const product = await Product.create({ name, description, price, color });
+            const product = await Product.create( {
+                name, price, color
+            });
             res.send(product);
         } catch (e) {
             console.log(e);
@@ -80,26 +61,21 @@ class ProductController {
         }
     }
 
-    /**
-     * Update product by id in database.
-     * 
-     * @param {*} req 
-     * @param {*} res 
-     */
     async update(req, res) {
         const { id } = req.params;
-        const { name, description, price, color } = req.body;
+        const { name, price, color } = req.body;
         try {
-            const product = await Product.findOne( {where: { id } });
+            const product = await Product.findOne({ 
+                where: {id}
+            });
             if (product) {
                 product.name = name;
-                product.description = description;
                 product.price = price;
                 product.color = color;
                 await product.save();
                 res.send(product);
             } else {
-                res.send(`Product with id ${id} not exist in database`);
+                res.send(`Sorry, we don't have any product with id '${id}'`);
             }
         } catch (e) {
             console.log(e);
@@ -107,21 +83,17 @@ class ProductController {
         }
     }
 
-    /**
-     * Delete product by id in database.
-     * 
-     * @param {*} req 
-     * @param {*} res 
-     */
     async delete(req, res) {
         const { id } = req.params;
         try {
-            const product = await Product.findOne( {where: { id } });
+            const product = await Product.findOne({ 
+                where: { id } 
+            });
             if (product) {
                 await product.destroy();
-                res.send( {success: true });
+                res.send( {success: true});
             } else {
-                res.send( {success: false });
+                res.send(`Sorry, we don't have any product with id '${id}'`);
             }
         } catch (e) {
             console.log(e);

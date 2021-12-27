@@ -1,0 +1,21 @@
+{
+  "name": "level8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha"
+  },
+  "author": "Rodrigo Mady",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "nyc": "^15.1.0"
+  }
+}
