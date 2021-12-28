@@ -1,27 +1,26 @@
 /**
- * BairesDev NodeJS Bootcamp level 8.
- * Level 8 - Final project.
+ * BairesDev NodeJS Bootcamp level 6.
+ * Level 8 - Final Project.
  * 
  * @author  Rodrigo Mady
  * @project NodeJS Bootcamp
  */
 
- const Product = require('./src/entities/product.model');
+const express    = require('express');
+const routes     = require('./src/routes');
+const bodyParser = require('body-parser');
+const path       = require('path');
 
- (async () => {
-     await Product.sync({ force: true});
-     const phone = Product.build({
-         name: 'External HDD',
-         price: 100,
-         color: 'black'
-     });
-     await phone.save();
-     console.log(phone.toJSON());
- 
-     const notebook = Product.create({
-         name: 'Notebook',
-         price: 2000,
-         color: 'blue'
-     });
-     console.log(notebook.toJSON());
- })();
+const port = 3000;
+const app  = express();
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
+
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ 'extended' : false }));
+app.use(bodyParser.json());
+app.use(routes);
+
+app.listen(port);
+console.log(`Server is high and running at port ${port}`);

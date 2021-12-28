@@ -33,6 +33,30 @@ class ProductController {
         }
     }
 
+    
+    async report(req, res) {
+        const { name } = req.body;
+        let products = [];
+        try {
+            if (name) {
+                products = await Product.findAll({
+                    where: {
+                        name: {[Op.like]: `%${name}%`}
+                    }
+                });
+                if (products.length === 0) {
+                    res.send(`Sorry, we don't have any products with name like '${name}'`);
+                }
+            } else {
+                products = await Product.findAll();
+            }
+            res.send(products);
+        } catch (e) {
+            console.log(e);
+            res.status(500).send(e.message);
+        }
+    }
+
     async get(req, res) {
         const { id } = req.params;
         try {
