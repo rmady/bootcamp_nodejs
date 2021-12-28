@@ -7,9 +7,9 @@
  */
 
 const express    = require('express');
-const routes     = require('./src/routes');
 const bodyParser = require('body-parser');
 const path       = require('path');
+const routes     = require(path.join(__dirname, "/src/routes"));
 
 const port = 3000;
 const app  = express();
