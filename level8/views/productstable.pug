@@ -1,0 +1,14 @@
+table.table-secondary.table.table-hover.table-striped.mx-auto.my-4
+    thead
+    tr.table-primary
+        th(scope="col") #
+        th(scope="col") Name
+        th(scope="col") Price
+        th(scope="col") Color
+    tbody
+    each val, key in products
+        tr
+            td= val.id
+            td= val.name
+            td= `$ ${val.price}`
+            td= val.color

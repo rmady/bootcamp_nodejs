@@ -1,0 +1,10 @@
+extends layout
+
+block layout-content
+    div.container.my-4
+        div.text-center
+        
+            h3 List of products
+            include productstable.pug     
+            h3 Download File
+            a.btn.btn-danger.my-4(href=path download) Download

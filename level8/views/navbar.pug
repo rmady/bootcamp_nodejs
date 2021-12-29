@@ -1,6 +1,8 @@
 nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
     div.container-fluid
-        a.navbar-brand(href="#") Bootcamp NodeJS BairesDev
+        a.navbar-brand(href="/") 
+            img(src="/images/favicon.png", width="32") 
+            span.m-2 Shop BairesDev
         button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation")
             span.navbar-toggler-icon
         div#navbarColor01.collapse.navbar-collapse
@@ -8,5 +10,6 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
                 li.nav-item
                     a.nav-link(href="/") Home
                 li.nav-item
-                    a.nav-link(href="/products") Products
+                    form(name="report" action="/report" method="post")
+                        input.btn(type="submit" value="Products" style="background-color: transparent;border: none;color: white; color: rgba(255,255,255,.55);padding-right: 0.5rem; padding-left: 0.5rem; text-shadow: 0 0 1px rgb(255 255 255 / 30%), 0 0 2px rgb(255 255 255 / 30%), 0 0 5px rgb(255 255 255 / 20%);display: block; padding: 0.5rem 1rem; text-decoration: none;transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;")
                     

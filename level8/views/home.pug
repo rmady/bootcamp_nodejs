@@ -3,11 +3,13 @@ extends layout
 block layout-content
   div.View
     h1.text-center.m-4 Bootcamp NodeJS BairesDev
-    div.container-fluid
-      div.card.border-success.mx-auto.my-4.text-center.w-25
-        div.card-body
-          h4.card-title Products
-          p.card-text Access the list of all products.
-          a.btn.btn-outline-light(href="/products") Products
-
-    #{products}
+    
+    div.container
+      div.row   
+        div.card.border-success.mx-auto.my-4.text-center.w-25
+          div.card-body
+            h4.card-title Report
+            p.card-text Download the list of all products.
+            form(name='report' action='/report' method='post')
+              input.btn.btn-outline-light(type='submit' value='Products')
+      

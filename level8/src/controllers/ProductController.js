@@ -6,10 +6,15 @@
  * @project NodeJS Bootcamp
  */
 
-const Product   = require("../entities/product.model");
-const { Op }    = require("sequelize")
+const Product = require("../entities/product.model");
+const { Op }  = require("sequelize")
+const path    = require('path');
+const fs      = require('fs');
+const pdf     = require('pdf-creator-node');
+const options = require('../helpers/options');
 
 class ProductController {
+
     async list(req, res) {
         const { name } = req.body;
         let products = [];
@@ -26,7 +31,18 @@ class ProductController {
             } else {
                 products = await Product.findAll();
             }
-            res.render("home", { title: "Home", products });
+            return products;
+        } catch (e) {
+            console.log(e);
+            res.status(500).send(e.message);
+        }
+    }
+
+    async renderHome(req, res) {
+        try {
+            const productController = new ProductController();
+            let products = await productController.list(req, res);
+            res.render("home", { title: "Home", products: products });
         } catch (e) {
             console.log(e);
             res.status(500).send(e.message);
@@ -35,22 +51,52 @@ class ProductController {
 
     
     async report(req, res) {
-        const { name } = req.body;
-        let products = [];
+        const html     = fs.readFileSync(path.join(__dirname, '../../views/template.html'), 'utf-8');
+        const filename = Math.random() + '_doc' + '.pdf';
+        const productController = new ProductController();
         try {
-            if (name) {
-                products = await Product.findAll({
-                    where: {
-                        name: {[Op.like]: `%${name}%`}
-                    }
-                });
-                if (products.length === 0) {
-                    res.send(`Sorry, we don't have any products with name like '${name}'`);
+            let products = await productController.list(req, res);
+            let array    = [];
+
+            products.forEach(d => {
+                const prod = {
+                    id:    d.id,
+                    name:  d.name,
+                    price: parseFloat(d.price),
+                    color: d.color
                 }
-            } else {
-                products = await Product.findAll();
+                array.push(prod);
+            });
+
+            let subtotal = 0;
+            products.forEach(i => {
+                subtotal += parseFloat(i.price);
+            });
+            const tax = (subtotal * 20) / 100;
+            const grandtotal = subtotal - tax;
+            const obj = {
+                prodlist: array,
+                subtotal: subtotal,
+                tax: tax,
+                gtotal: grandtotal
             }
-            res.send(products);
+            console.log(obj);
+            const document = {
+                html: html,
+                data: {
+                    products: obj
+                },
+                path: './docs/' + filename
+            }
+            pdf.create(document, options)
+            .then(res => {
+                console.log(res);
+            }).catch(error => {
+                console.log(error);
+            });
+            
+            const filepath = 'http://localhost:3000/docs/' + filename;
+            res.render("download", { path: filepath, title: "Report", products: products });
         } catch (e) {
             console.log(e);
             res.status(500).send(e.message);
