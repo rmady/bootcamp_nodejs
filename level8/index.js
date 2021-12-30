@@ -23,5 +23,5 @@ app.use(bodyParser.urlencoded({ 'extended' : false }));
 app.use(bodyParser.json());
 app.use(routes);
 
-app.listen(port);
+module.exports = app.listen(port);
 console.log(`Server is high and running at port ${port}`);

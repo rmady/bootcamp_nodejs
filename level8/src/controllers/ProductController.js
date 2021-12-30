@@ -15,7 +15,7 @@ const options = require('../helpers/options');
 
 class ProductController {
 
-    async list(req, res) {
+    async list(req, res, rtn) {
         const { name } = req.body;
         let products = [];
         try {
@@ -31,7 +31,11 @@ class ProductController {
             } else {
                 products = await Product.findAll();
             }
-            return products;
+            if (rtn === true) {
+                return products;
+            } else {
+                res.send(products);
+            }
         } catch (e) {
             console.log(e);
             res.status(500).send(e.message);
@@ -41,7 +45,7 @@ class ProductController {
     async renderHome(req, res) {
         try {
             const productController = new ProductController();
-            let products = await productController.list(req, res);
+            let products = await productController.list(req, res, true);
             res.render("home", { title: "Home", products: products });
         } catch (e) {
             console.log(e);
@@ -55,7 +59,7 @@ class ProductController {
         const filename = Math.random() + '_doc' + '.pdf';
         const productController = new ProductController();
         try {
-            let products = await productController.list(req, res);
+            let products = await productController.list(req, res, true);
             let array    = [];
 
             products.forEach(d => {
@@ -80,7 +84,8 @@ class ProductController {
                 tax: tax,
                 gtotal: grandtotal
             }
-            console.log(obj);
+
+
             const document = {
                 html: html,
                 data: {
@@ -110,7 +115,7 @@ class ProductController {
             if (product) {
                 res.send(product);
             } else {
-                res.send(`Sorry, we don't have any product with id '${id}'`);
+                res.send({message: `Sorry, we don't have any product with id '${id}'`});
             }
         } catch (e) {
             console.log(e);
@@ -145,7 +150,7 @@ class ProductController {
                 await product.save();
                 res.send(product);
             } else {
-                res.send(`Sorry, we don't have any product with id '${id}'`);
+                res.send({message: `Sorry, we don't have any product with id '${id}'`});
             }
         } catch (e) {
             console.log(e);

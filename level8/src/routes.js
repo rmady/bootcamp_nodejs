@@ -13,6 +13,7 @@ const path    = require('path');
 const ProductController = require('./controllers/ProductController');
 
 router.get('/', ProductController.renderHome);
+router.get('/products', ProductController.list);
 // Create a new endpoint (POST) that will generate a report file (can be .pdf, .xsls, .txt you choose) for the products. 
 // This report file should have all the products on the DB with summary information. One product for each line.
 router.post('/report', ProductController.report);

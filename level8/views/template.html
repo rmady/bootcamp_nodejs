@@ -15,7 +15,7 @@
           </td>
       </tr>
   </table> 
-  <table width="95%">
+  <table class="table table-striped" width="95%">
     <thead>
       <tr>
         <th scope="col" style="font-size:15px">#</th>
@@ -28,7 +28,7 @@
       {{#each products.prodlist}}
       <tr>
         <td width="1%" style="font-size:12px">{{this.id}}</td>
-        <th width="6%" style="font-size:12px">
+        <th width="3%" style="font-size:12px">
           <h5 style="font-weight: 700;color:chocolate;font-size:12px">{{this.name}}</h5>
         </th>
         <td width="1%" style="font-size:12px">{{this.color}}</td>
@@ -40,15 +40,15 @@
   <table width="95%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td width="1%"  align="right" style="font-size: 25px;font-weight: 700;color:darkred; background-color: #f6f6f6; padding-right: 5px;">Sub Total</td>
-      <td width="6%" align="right" style="background-color: lightgreen;"><h2 style="font-size: 25px;font-weight: 700;color:#fff;">{{products.subtotal}}</h2></td>
+      <td width="4%" align="left" style="background-color: lightblue;"><h2 style="font-size: 25px;font-weight: 700;color:#fff;">${{products.subtotal}}</h2></td>
     </tr>
     <tr>
       <td width="1%"  align="right" style="font-size: 25px;font-weight: 700;color:darkred; background-color: #f6f6f6; padding-right: 5px;">Tax </td>
-      <td width="6%" align="right" style="background-color: lightcoral;"><h2 style="font-size: 25px;font-weight: 700;color:#fff;">{{products.tax}}</h2></td>
+      <td width="4%" align="left" style="background-color: lightcoral;"><h2 style="font-size: 25px;font-weight: 700;color:#fff;">${{products.tax}}</h2></td>
     </tr>
     <tr>
       <td width="1%"  align="right" style="font-size: 25px;font-weight: 700;color:darkred; background-color: #f6f6f6; padding-right: 5px;">Grand Total</td>
-      <td width="6%" align="right" style="background-color: lightgreen;"><h2 style="font-size: 25px;font-weight: 700;color:#fff;">${{products.gtotal}}</h2></td>
+      <td width="4%" align="left" style="background-color: lightblue;"><h2 style="font-size: 25px;font-weight: 700;color:#fff;">${{products.gtotal}}</h2></td>
     </tr>
   </table>
 </body>
