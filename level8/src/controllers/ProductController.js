@@ -77,7 +77,7 @@ class ProductController {
                 subtotal += parseFloat(i.price);
             });
             const tax = (subtotal * 20) / 100;
-            const grandtotal = subtotal - tax;
+            const grandtotal = subtotal + tax;
             const obj = {
                 prodlist: array,
                 subtotal: subtotal,
