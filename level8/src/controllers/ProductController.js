@@ -85,7 +85,6 @@ class ProductController {
                 gtotal: grandtotal
             }
 
-
             const document = {
                 html: html,
                 data: {
@@ -168,7 +167,7 @@ class ProductController {
                 await product.destroy();
                 res.send( {success: true});
             } else {
-                res.send(`Sorry, we don't have any product with id '${id}'`);
+                res.send({message: `Sorry, we don't have any product with id '${id}'`});
             }
         } catch (e) {
             console.log(e);

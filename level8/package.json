@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/index.test.js",
+    "test": "nyc --reporter=html --reporter=text mocha",
     "coverage": "instanbul cover _mocha test/index.test.js -x *.test.js",
     "start": "./node_modules/nodemon/bin/nodemon.js ./index.js"
   },
