@@ -26,7 +26,7 @@ class ProductController {
      * @param {*} rtn 
      * @returns 
      */
-    async list(req, res, rtn) {
+    list = async (req, res, rtn) => {
         const { name } = req.body;
         let products = [];
         try {
@@ -60,10 +60,9 @@ class ProductController {
      * @param {*} req 
      * @param {*} res 
      */
-    async renderHome(req, res) {
+    renderHome = async (req, res) => {
         try {
-            const productController = new ProductController();
-            let products = await productController.list(req, res, true);
+            let products = await this.list(req, res, true);
             res.render("home", { title: "Home", products: products });
         } catch (e) {
             console.log(e);
@@ -77,7 +76,7 @@ class ProductController {
      * @param {*} req 
      * @param {*} res 
      */
-    async report(req, res) {
+     report = async (req, res) => {
         const html     = fs.readFileSync(path.join(__dirname, '../../views/template.html'), 'utf-8');
         const filename = Math.random() + '_doc' + '.pdf';
         const productController = new ProductController();
@@ -136,7 +135,7 @@ class ProductController {
      * @param {*} req 
      * @param {*} res 
      */
-    async get(req, res) {
+    get = async (req, res) => {
         const { id } = req.params;
         try {
             const product = await Product.findOne({ where: { id } });
@@ -157,7 +156,7 @@ class ProductController {
      * @param {*} req 
      * @param {*} res 
      */
-    async create(req, res) {
+    create = async (req, res) => {
         const { name, price, color } = req.body;
         try {
             const product = await Product.create( {
@@ -175,8 +174,8 @@ class ProductController {
      * 
      * @param {*} req 
      * @param {*} res 
-     */
-    async update(req, res) {
+     */        
+    update = async (req, res) => {
         const { id } = req.params;
         const { name, price, color } = req.body;
         try {
@@ -204,7 +203,7 @@ class ProductController {
      * @param {*} req 
      * @param {*} res 
      */
-    async delete(req, res) {
+    delete = async (req, res) => {
         const { id } = req.params;
         try {
             const product = await Product.findOne({ 
