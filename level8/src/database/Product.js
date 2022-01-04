@@ -1,5 +1,14 @@
+/**
+ * BairesDev NodeJS Bootcamp level 6.
+ * Level 8 - Final Project.
+ * 
+ * @author  Rodrigo Mady
+ * @project NodeJS Bootcamp
+ */
+
 const Product = require('./src/entities/product.model');
 
+// Create products in database.
 (async () => {
     await Product.sync({ force: true});
     const phone = Product.build({

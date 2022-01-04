@@ -15,7 +15,9 @@
          super(name, numberOfPaws, gender);
      }
      say() {
-         console.log('Cat goes "meow"');
+        let str = 'Cat goes "meow"';
+        console.log(str);
+        return str;
      }
  }
  

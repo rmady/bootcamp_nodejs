@@ -20,9 +20,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/users', (req, res) => {
-    let name    = req.query.name;
+    let name    = req.body.name;
     let matches = userController.search(name, users);
-    return matches.length ? res.json(matches) : res.json(users);
+    return matches.length ? 
+    
+    res.json(matches) : res.json(users);
 });
 
 router.post('/users', (req, res) => {

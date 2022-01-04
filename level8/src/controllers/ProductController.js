@@ -13,12 +13,24 @@ const fs      = require('fs');
 const pdf     = require('pdf-creator-node');
 const options = require('../helpers/options');
 
+/**
+ * Class Product Controller.
+ */
 class ProductController {
 
+    /**
+     * List all products in database with option of like filter.
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} rtn 
+     * @returns 
+     */
     async list(req, res, rtn) {
         const { name } = req.body;
         let products = [];
         try {
+            // 
             if (name) {
                 products = await Product.findAll({
                     where: {
@@ -42,6 +54,12 @@ class ProductController {
         }
     }
 
+    /**
+     * Render home page.
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     */
     async renderHome(req, res) {
         try {
             const productController = new ProductController();
@@ -53,7 +71,12 @@ class ProductController {
         }
     }
 
-    
+    /**
+     * Render report page.
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     */
     async report(req, res) {
         const html     = fs.readFileSync(path.join(__dirname, '../../views/template.html'), 'utf-8');
         const filename = Math.random() + '_doc' + '.pdf';
@@ -107,6 +130,12 @@ class ProductController {
         }
     }
 
+    /**
+     * Get product by id.
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     */
     async get(req, res) {
         const { id } = req.params;
         try {
@@ -122,6 +151,12 @@ class ProductController {
         }
     }
 
+    /**
+     * Create product in database.
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     */
     async create(req, res) {
         const { name, price, color } = req.body;
         try {
@@ -135,6 +170,12 @@ class ProductController {
         }
     }
 
+    /**
+     * Update product by id in database.
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     */
     async update(req, res) {
         const { id } = req.params;
         const { name, price, color } = req.body;
@@ -157,6 +198,12 @@ class ProductController {
         }
     }
 
+    /**
+     * Delete product by id in database.
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     */
     async delete(req, res) {
         const { id } = req.params;
         try {

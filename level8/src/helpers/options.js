@@ -1,3 +1,11 @@
+/**
+ * BairesDev NodeJS Bootcamp level 6.
+ * Level 8 - Final Project.
+ * 
+ * @author  Rodrigo Mady
+ * @project NodeJS Bootcamp
+ */
+
 module.exports = {
     formate: 'A3',
     orientation: 'portrait',

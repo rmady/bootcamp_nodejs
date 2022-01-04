@@ -41,3 +41,5 @@ promiseWaitTo(1000)
     .then((result) => {
         console.log(result);
     });
+
+module.exports = promiseAsyncWaitTo;

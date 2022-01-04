@@ -21,5 +21,5 @@ app.use(bodyParser.json());
 app.use(routes);
 
 // Start server.
-app.listen(port);
+module.exports = app.listen(port);
 console.log('Server started at http://localhost:' + port);

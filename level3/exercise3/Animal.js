@@ -20,7 +20,9 @@ class Animal {
     }
 
     info() {
-        console.log(`My name is ${this.name}, I have ${this.numberOfPaws} paws and I'm ${this.gender}`);
+        let str = `My name is ${this.name}, I have ${this.numberOfPaws} paws and I'm ${this.gender}`;
+        console.log(str);
+        return str;
     }
 }
 

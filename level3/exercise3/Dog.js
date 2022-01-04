@@ -15,7 +15,9 @@ class Dog extends Animal {
         super(name, numberOfPaws, gender);
     }
     say() {
-        console.log('Dog goes "woof"');
+        let str = 'Dog goes "woof"';
+        console.log(str);
+        return str;
     }
 }
 

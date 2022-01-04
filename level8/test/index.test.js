@@ -1,3 +1,11 @@
+/**
+ * BairesDev NodeJS Bootcamp level 8.
+ * Level 8 - Final Project.
+ * 
+ * @author  Rodrigo Mady
+ * @project NodeJS Bootcamp
+ */
+
 const assert  = require('assert');
 const app     = require('../index');
 const request = require('supertest');

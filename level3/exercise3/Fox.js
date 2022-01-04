@@ -15,8 +15,10 @@
          super(name, numberOfPaws, gender);
      }
      say() {
-         console.log('Ring-ding-ding-ding-dingeringeding! Gering-ding-ding-ding-dingeringeding! Gering-ding-ding-ding-dingeringeding!');
-     }
+        let str = 'Ring-ding-ding-ding-dingeringeding! Gering-ding-ding-ding-dingeringeding! Gering-ding-ding-ding-dingeringeding!';
+        console.log(str);
+        return str;
+    }
  }
  
  module.exports = Fox;

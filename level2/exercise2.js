@@ -21,3 +21,5 @@ console.log(`Incrementation: ${incrementAge(person, 5)}`);
 // Another to decrement age, both receiving the amount as parameter.
 let decrementAge = (person, decrement) => person.age - decrement;
 console.log(`Decrementation: ${decrementAge(person, 15)}`);
+
+module.exports = exercise2;
